@@ -91,7 +91,8 @@ class Car {
     let maxDistance = this.milesPerGallon * this.tank;
     this.tank = this.tank - (Math.floor(distance / this.milesPerGallon));
     if (distance > maxDistance) {
-      return `I ran out of fuel at ${this.odometer -1} miles!`;
+      this.odometer = maxDistance;
+      return `I ran out of fuel at ${this.odometer} miles!`;
     }
   }
 }
@@ -169,16 +170,17 @@ class Student extends Lambdasian {
     super(obj);
     this.previousBackground = obj.previousBackground;
     this.className = obj.className;
-    this.favSubjects = [obj.favSubjects];
+    this.favSubjects = obj.favSubjects;
   }
   listSubjects() {
-    for (let i = 0; i < this.favSubjects.length; i++) {return this.favSubjects[i]};
+    let strung = this.favSubjects.toString();
+    return `Loving ${strung}!`;
     }
   PRAssignment(subject) {
-    return `${student.name} has submitted a PR for ${subject}`
+    return `${this.name} has submitted a PR for ${subject}`
   }
   sprintChallenge(subject) {
-    return `${obj.student.name} has begun sprint challenge on ${subject}`
+    return `${this.name} has begun sprint challenge on ${subject}`
   }
 }
 
@@ -195,8 +197,18 @@ class Student extends Lambdasian {
         + `standUp` a method that takes in a slack channel and returns `{name} announces to {channel}, @channel standy times!`
         + `debugsCode` a method that takes in a student object and a subject and returns `{name} debugs {student.name}'s code on {subject}`
 */
-class ProjectManager {
-
+class ProjectManager extends Instructor {
+  constructor(obj){
+  super(obj);
+  this.gradClassName = obj.gradClassName;
+  this.favInstructor = obj.favInstructor;
+  }
+  standUp(channel) {
+    return `${this.name} announces to ${channel}, @channel standy times!`
+  }
+  debugsCode(student, subject) {
+    return `${this.name} debugs ${student.name}'s code on ${subject}`
+  }
 }
 
 /*
